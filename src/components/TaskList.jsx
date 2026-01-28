@@ -45,11 +45,13 @@ const TaskList = () => {
                     <option value="Overdue">Overdue</option>
                 </select>
 
-                <input 
-                    type="text"
-                    placeholder="Filter by category"
-                    onChange={(e) => setCategoryFilter(e.target.value)}
-                />
+                <select onChange={(e) => setCategoryFilter(e.target.value)}>
+                    <option value="">All Categories</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Study">Study</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
 
             {/* Task List */}
