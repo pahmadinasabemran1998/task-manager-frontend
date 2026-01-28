@@ -7,27 +7,37 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError("");
 
         try {
-            const { data } = await api.post("/auth/login", { email, password });
+            const { data } = await api.post("/auth/login", {
+                email,
+                password,
+            });
             login(data);
             navigate("/dashboard");
         } catch (err) {
             setError(err.response?.data?.message || "Login failed");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="container">
             <h1>Login</h1>
+
             <form onSubmit={handleSubmit}>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p className="error">{error}</p>}
+
                 <input 
                     type="email"
                     placeholder="Email"
@@ -35,6 +45,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
+
                 <input 
                     type="password"
                     placeholder="Password"
@@ -42,7 +53,10 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Login</button>
+
+                <button type="submit" disabled={loading}>
+                    {loading ? "Loggin in..." : "Login"}
+                </button>
             </form>
         </div>
     );
