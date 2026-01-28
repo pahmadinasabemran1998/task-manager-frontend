@@ -1,16 +1,48 @@
-# React + Vite
+# Task Manager Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **React + Vite** frontend for a Task Management application. It allows users to register, log in, and manage their tasks with a dynamic and responsive interface. The frontend communicates with a secure backend API built with Node.js, Express, and MongoDB.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**: Register, login, and maintain session using JWT tokens.
+- **Task Management**: Add, edit, and update tasks with details like title, category, deadline, and status.
+- **Dynamic Filtering**: Filter tasks by status (`In Progress`, `Completed`, `Overdue`) or category (`Work`, `Personal`, `Study`, `Other`).
+- **Automatic Status Updates**: Tasks past their deadline are automatically marked as `Overdue`.
+- **Responsive UI**: Loading states, empty state messages, and smooth updates without page reloads.
+- **Integration with Backend**: Communicates securely with the [Task Manager Backend](https://github.com/pahmadinasabemran1998/task-manager-backend) API.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React, Vite, JavaScript, Vanilla CSS
+- **State Management**: React Context API
+- **API Calls**: Axios
+- **Routing**: React Router
 
-## Expanding the ESLint configuration
+## Setup & Running
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+
+```bash
+git clone https://github.com/pahmadinasabemran1998/task-manager-frontend.git
+```
+2. Navigate to the project folder:
+```bash
+cd task-manager-frontend
+```
+3. Install dependencies:
+```bash
+npm install
+```
+4. Create a .env file with your backend API URL:
+```bash
+VITE_API_URL=http://localhost:5000/api
+```
+5. Start the development server:
+```bash
+npm run dev
+```
+6. Open your browser at the provided local URL (e.g., http://localhost:5173) to view the app.
+
+## Backend Reference:
+1. This frontend is designed to work with the Task Manager Backend: [Task Manager Backend](https://github.com/pahmadinasabemran1998/task-manager-backend).
+2. Make sure the backend is running and accessible at the URL specified in .env.
