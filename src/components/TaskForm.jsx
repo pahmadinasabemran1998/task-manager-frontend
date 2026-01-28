@@ -6,22 +6,28 @@ const TaskForm = ({ onTaskAdded }) => {
     const [category, setCategory] = useState("Work");
     const [status, setStatus] = useState("In Progress");
     const [deadline, setDeadline] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
-        await createTask({
-            title,
-            category,
-            status,
-            deadline,
-        });
+        try {
+            await createTask({
+                title,
+                category,
+                status,
+                deadline,
+            });
 
-        setTitle("");
-        setCategory("Work");
-        setStatus("In Progress");
-        setDeadline("");
-        onTaskAdded();
+            setTitle("");
+            setCategory("Work");
+            setStatus("In Progress");
+            setDeadline("");
+            onTaskAdded();
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -36,7 +42,6 @@ const TaskForm = ({ onTaskAdded }) => {
                 required
             />
 
-            {/* Category Dropdown */}
             <select value={category} onChange={(e) => setCategory(e.target.value)}>
                 <option value="Work">Work</option>
                 <option value="Personal">Personal</option>
@@ -44,20 +49,21 @@ const TaskForm = ({ onTaskAdded }) => {
                 <option value="Other">Other</option>
             </select>
 
-            {/* Status Dropdown */}
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select>
 
             <input 
-                type="data"
+                type="date"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
                 required
             />
 
-            <button type="submit">Add Task</button>
+            <button type="submit" disabled={loading}>
+                {loading ? "Adding..." : "Add Task"}
+            </button>
         </form>
     );
 };
