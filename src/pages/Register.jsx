@@ -17,6 +17,7 @@ const Register = () => {
 
         try {
             const { data } = await api.post("/auth/register", { name, email, password });
+            console.log("Register success:", data); // debug
             login(data);
             navigate("/dashboard");
         } catch (err) {
