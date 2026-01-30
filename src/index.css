@@ -106,3 +106,19 @@ button:disabled {
 .error {
   color: #dc2626;
 }
+
+.container section {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  margin-top: 2rem;
+}
+
+.container section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.container section p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: #333;
+}
